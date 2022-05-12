@@ -1,0 +1,48 @@
+GET http://localhost:3000/api/v1/products
+
+
+###
+
+
+GET http://localhost:3000/api/v1/products/---1---46
+
+
+###
+
+POST http://localhost:3000/api/v1/products
+Content-Type: application/json
+
+{
+  "name": "Beans",
+  "price": 123,
+  "image": "http://placeimg.com/640/480"
+}
+
+
+###
+
+//put se puede usar para actualizar atributos por separado, pero si seguimos
+//la documentación oficial, la convención de REST nos recomienda utilizarlo
+//para actualizar todos los atributos al mismo tiempo y no por separado
+PUT http://localhost:3000/api/v1/products
+
+
+
+###
+
+
+//El PATCH es el caso contrario al PUT ya que REST indica que lo utilicemos
+//para actualizar cada atributo por separado(actualizaciones parciales), en vez de tdodos a la vez.
+PATCH http://localhost:3000/api/v1/products/01231bbf-334a-4d48-8856-f37d48f4231b
+Content-Type: application/json
+
+{
+  "name": 54654,
+  "price": 0
+}
+
+
+###
+
+//Le pasamos un id y elminia
+DELETE http://localhost:3000/api/v1/products/84e48182-13a2-47f7-8c23-a0aff07c62f2

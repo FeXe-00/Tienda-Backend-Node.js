@@ -1,0 +1,110 @@
+*** Códigos de estado o HTTP response status codes:
+
+https://developer.mozilla.org/en-US/docs/Web/HTTP
+
+https://http.cat/
+
+
+
+*** Middlewares:
+
+Estos se encuentran en el centro del Request y el Response.
+esto nos permite procesar logica por eso se encuentra en la mitad.
+En otras palabras, recibimos una petición (request), procesamos los datos con
+la lógica del middleware y enviamos una respuesta (response), de ahí viene su
+nombre, ya que es un proceso que ocurre entremedio del req y el res.
+Nosotros podemos juntar varios middleware con distintas lógicas.
+una de las lógicas que se ocupa es la validación,después de validar podemos
+ejecutar otro middleware que sea complementario creando una pipeline de eventos.
+Se estructuran de la siguiente manera
+
+function name(req, res, next) {
+	if(algo) {
+		res.send('end');
+	} else {
+		next();
+  }
+}
+
+SI queremos finalizar el middleware ocupamos directamente el res.send(’’).
+En cambio si queremos continuar a otro ocupamos next().
+También podemos utilizar error first en ellos, agregamos como primer parametro
+error, y luego agregamos lod emás parámetros, quedaría de la siguiente manera:
+
+function name(error, req, res, next) {
+	if(error) {
+		res.status(500).json({error});
+	} else {
+		next();
+  }
+}
+
+Casos de uso de los middlewares:
+
+* Funcionar como pipes, es decir, conectar unos con otros al igual que una tubería donde la salida de uno, es la entrada de información del otro.
+* Validar datos.
+* Capturar errores.
+* Validar permisos.
+* Controlar accesos.
+
+Módulo para validación de datos:
+https://joi.dev/
+
+
+*********** AMIDDLEWARES MÁS POPULARES DE EXPRESS: ***********
+
+***CORS:
+Middleware para habilitar CORS (Cross-origin resource sharing)
+en nuestras rutas o aplicación.
+http://expressjs.com/en/resources/middleware/cors.html
+
+***Morgan:
+Un logger de solicitudes HTTP para Node.js.
+http://expressjs.com/en/resources/middleware/morgan.html
+
+***Helmet:
+Helmet nos ayuda a proteger nuestras aplicaciones Express
+configurando varios encabezados HTTP.
+¡No es a prueba de balas de plata, pero puede ayudar!
+https://github.com/helmetjs/helmet
+
+***Express Debug:
+Nos permite hacer debugging de nuestras aplicaciones en
+Express mediante el uso de un toolbar en la pagina cuando
+las estamos desarrollando.
+https://github.com/devoidfury/express-debug
+
+***Express Slash:
+Este middleware nos permite evitar preocuparnos por escribir
+las rutas con o sin slash al final de ellas.
+https://github.com/ericf/express-slash
+
+***Passport:
+Passport es un middleware que nos permite establecer
+diferentes estrategias de autenticación a nuestras
+aplicaciones.
+https://github.com/jaredhanson/passport
+
+/**/Más:
+Puedes encontrar más middlewares populares en el siguiente enlace
+http://expressjs.com/en/resources/middleware.html
+
+
+* Un breve resumen de las consideraciones para producción:
+
+  _Cors: Que acceso y a quienes le damos acceso para hacer solicitudes
+
+  _Https: Que la API esta sobre servidor de HTTPS
+
+  _Procesos de Build: Se ve en procesos que cosas que tiene procesar
+    información (typescript)
+
+  _Remover logs: No es bueno tener logs, a veces esto tiene demoras,
+    existen mejor formas para capturar logs.
+
+  _Seguridad (helmet): Muy importante la seguridad y para esto se
+    recomienda helmt que es una colección de Middleware que colocan
+    capas de segridad a la aplicación
+
+  _Testing: Correr prebas unitarias o de integración antes de salir
+    de producción

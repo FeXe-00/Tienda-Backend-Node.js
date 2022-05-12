@@ -1,0 +1,20 @@
+Conceptos Importantes:
+   Autenticación:
+	La autenticación es el proceso de identificar a los usuarios y garantizar que los mismos sean
+	quienes dicen ser. Esto evita que cualquiera pueda entrar en un determinado sistema o iniciar sesión
+	en alguna plataforma de forma indebida, sin que realmente sea el usuario legítimo que tiene el poder
+	para hacerlo.
+
+   Autorización:
+	La autorización es lo que define a qué recursos de sistema el usuario autenticado podrá acceder.
+	Que haya logrado pasar la instancia de la autenticación, no significa que podrá utilizar el sistema
+	por completo como super administrador. De acuerdo a una serie de reglas, normas y regulaciones propias
+	de cada red interna, se determina que el usuario A tendrá acceso a los recursos X e Y. Sin embargo,
+	el usuario B sólo podrá acceder al recurso Z.
+
+
+
+JWT(json web tokens):
+   Uso de jwt:
+	Este se usa para autorización, ¡¡¡¡NO SE HUSA PARA AUTENTICAR!!!!
+
